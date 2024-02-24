@@ -21,7 +21,7 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" style="margin: auto">
                             <div class="card">
-                                <h5 class="card-header">Add Employee</h5>
+                                <h5 class="card-header">New Employee</h5>
                                 <div class="card-body">
                                     <form action="#" id="basicform" data-parsley-validate="">
                                         <div class="form-group">
@@ -55,8 +55,8 @@
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-success">Submit</button>
-                                                    <a href="{{route('home')}}" class="btn btn-space btn-secondary">Cancel</a>
-                                                    {{-- <button class="btn btn-space btn-secondary">Cancel</button> --}}
+                                                    <a href="{{route('all-employees')}}" class="btn btn-space btn-secondary">Cancel</a>
+                                                    <!-- <button class="btn btn-space btn-secondary">Cancel</button> -->
                                                 </p>
                                             </div>
                                         </div>

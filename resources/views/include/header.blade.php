@@ -95,23 +95,23 @@ John Abraham</span>is now following you
                 <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../resources/assets/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                        @if ($user)
+                        
                             <div class="nav-user-info">
-                                <h5 class="mb-0 text-white nav-user-name">{{$user->name}}</h5>
+                                <h5 class="mb-0 text-white nav-user-name">Ammaday</h5>
                                 <span class="status"></span><span class="ml-2">Available</span>
                             </div>
                             
-                            {{-- <div class="nav-user-info">
+                            <div class="nav-user-info">
                                 <h5 class="mb-0 text-white nav-user-name">John Abraham</h5>
                                 <span class="status"></span><span class="ml-2">Available</span>
-                            </div> --}}
+                            </div>
                             <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
                             <a class="dropdown-item" href="{{route('user.logout')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                        @endif
-                        @if (!$user)
+                        
+                        
                         <a class="dropdown-item" href="{{route('user.get_login')}}"><i class="fas fa-user mr-2"></i>Login</a>
-                        @endif
+                        
                     </div>
                 </li>
             </ul>

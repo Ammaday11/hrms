@@ -59,29 +59,41 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Employees</a>
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                    <a class="nav-link" href="{{route('all-employees')}}">All Employees<span class="badge badge-secondary">New</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="general.html">General</a>
+                                    <a class="nav-link" href="{{route('holidays')}}">Holidays</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="carousel.html">Carousel</a>
+                                    <a class="nav-link" href="{{route('show_admin_leaves')}}">Leaves (Admin)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="listgroup.html">List Group</a>
+                                    <a class="nav-link" href="listgroup.html">Leaves (Employee)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="typography.html">Typography</a>
+                                    <a class="nav-link" href="#">Leave Settings</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="accordions.html">Accordions</a>
+                                    <a class="nav-link" href="accordions.html">Attendance (Admin)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="tabs.html">Tabs</a>
+                                    <a class="nav-link" href="tabs.html">Attendance (Employee)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('show_departments')}}">Departments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="tabs.html">Designations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="tabs.html">Timesheet</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="tabs.html">Overtime</a>
                                 </li>
                             </ul>
                         </div>

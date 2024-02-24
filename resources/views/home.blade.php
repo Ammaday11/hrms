@@ -12,6 +12,15 @@
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Employees</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">All Employees</li>
+                </ol>
+            </nav>
+        </div>
+        
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
                 <div class="row">
@@ -30,10 +39,7 @@
                                     <div class="card-body">
                                         <div class="d-inline-block">
                                             <h5 class="text-muted">Pending</h5>
-                                            @if (count($orders) > 0)
-                                            <h2 class="mb-0"> {{count($orders->where('Status', 'Pending'))}}</h2>
-                                            @endif
-                                            
+                                            <h2 class="mb-0"> 2</h2>                                            
                                         </div>
                                         <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                             <i class=" fas fa-clock fa-fw fa-sm text-brand"></i>
@@ -52,7 +58,7 @@
                                     <div class="card-body">
                                         <div class="d-inline-block">
                                             <h5 class="text-muted">Uncleared</h5>
-                                            <h2 class="mb-0"> {{count($orders->where('Status', 'Delivered'))}}</h2>
+                                            <h2 class="mb-0"> 3</h2>
                                         </div>
                                         <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
                                             <i class=" fa fa-exclamation-triangle fa-fw fa-sm text-secondary"></i>
@@ -72,7 +78,7 @@
                                     <div class="card-body">
                                         <div class="d-inline-block">
                                             <h5 class="text-muted">Completed</h5>
-                                            <h2 class="mb-0"> {{count($orders->where('Status', 'Completed'))}}</h2>
+                                            <h2 class="mb-0"> 1</h2>
                                         </div>
                                         <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
                                             <i class="fas fa-check fa-fw fa-sm text-success"></i>
@@ -91,12 +97,9 @@
                                     <div class="card-body">
                                         <div class="d-inline-block">
                                             <h5 class="text-muted">Total Orders</h5>
-                                            <h2 class="mb-0"> {{count($orders)}}</h2>
-                                            <h5 class="text-muted">Total Covers</h5>
-                                            @if ($totalCovers > 0)
-                                            <h2 class="mb-0">{{$totalCovers}}</h2>
-                                            @endif
-                                            
+                                            <h2 class="mb-0"> 6</h2>
+                                            <!-- <h5 class="text-muted">Total Covers</h5>
+                                            <h2 class="mb-0">12</h2>                                             -->
                                         </div>
                                         <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                                             <i class="fa fa-eye fa-fw fa-sm text-info"></i>
@@ -128,229 +131,31 @@
                                                     <th>Time</th>
                                                     <th>Order Taker</th>
                                                     <th>Details</th>
-                                                    {{-- <th>Delivered By</th>
+                                                    <th>Delivered By</th>
                                                     <th>Delivered At</th>
                                                     <th>Cleared By</th>
-                                                    <th>Cleared At</th> --}}
+                                                    <th>Cleared At</th>
                                                     <th>Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($orders as $order)
                                                 <tr>
-                                                    <td>{{$order->CheckNo}}</td>
-                                                    <td>{{$order->RoomNo}}</td>
-                                                    <td>{{$order->Cover}}</td>
-                                                    <td>{{$order->created_at}}</td>
+                                                    <td>5345</td>
+                                                    <td>242</td>
+                                                    <td>242</td>
+                                                    <td>24254</td>
                                                     <td>Order Taker</td>
-                                                    <td>{{$order->Details}}</td>
-                                                    {{-- <td>DeliveredBy</td>
+                                                    <td>Details</td>
+                                                    <td>DeliveredBy</td>
                                                     <td>DeliveredAt</td>
                                                     <td>ClearedBy</td>
-                                                    <td>ClearedAt</td> --}}
-                                                    <td>{{$order->Status}}</td>
+                                                    <td>ClearedAt</td>
+                                                    <td>Status</td>
                                                     <td>
-                                                        <a href="{{ route('show-order', ['id' => $order->id]) }}" class="btn btn-info btn-sm m-r-10 fa fa-eye"></a>
-                                                        {{-- <a href="{{route('test')}}" class="btn btn-info btn-sm m-r-10 fa fa-eye"></a> --}}
-                                                        <a href="{{route('edit-order', ['id' => $order->id])}}" class="btn btn-brand btn-sm m-r-10 fas fa-edit" ></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
                                                         
                                                     </td>
                                                 </tr>
-                                                @endforeach
-                                                
-                                                {{-- <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Test1</td>
-                                                    <td>Test2</td>
-                                                    <td>Test3</td>
-                                                    <td>Test4</td>
-                                                    <td>Test5</td>
-                                                    <td>Test6</td>
-                                                    <td>Test7</td>
-                                                    <td>Test8</td>
-                                                    <td>Test9</td>
-                                                    <td>Test10</td>
-                                                    <td>Test11</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        
-                                                    </td>
-                                                </tr> --}}
-                                            {{-- @endforeach --}}
                                             </tbody>
                                         </table>
                                     </div>

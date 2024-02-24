@@ -50,6 +50,14 @@ Route::get('/', [App\Http\Controllers\OrdersController::class, 'index'])->name('
 Route::get('/login', [App\Http\Controllers\UsersController::class, 'get_login'])->name('user.get_login');
 Route::post('/login', [App\Http\Controllers\UsersController::class, 'login'])->name('user.login');
 
+Route::get('/Employees/all-employees', [App\Http\Controllers\EmployeesController::class, 'index'])->name('all-employees');
+Route::get('/Employees/add-employees', [App\Http\Controllers\EmployeesController::class, 'create'])->name('add-employees');
+Route::get('/Employees/employee-profile', [App\Http\Controllers\EmployeesController::class, 'show'])->name('employees-profile');
+Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::class, 'show_holidays'])->name('holidays');
+Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
+Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
+Route::get('/Employees/departments', [App\Http\Controllers\EmployeesController::class, 'show_departments'])->name('show_departments');
+
 Route::get('/create-order', [App\Http\Controllers\OrdersController::class, 'create'])->name('create-order');
 Route::get('/edit-order/{id}', [App\Http\Controllers\OrdersController::class, 'edit'])->name('edit-order');
 Route::get('/show-order/{id}', [App\Http\Controllers\OrdersController::class, 'show'])->name('show-order');
