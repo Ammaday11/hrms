@@ -1,11 +1,10 @@
 @extends('layouts.dashboard')
 
-@section('style')
-<!-- <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+<!-- @section('style')
+<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/buttons.bootstrap4.css">
 <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/select.bootstrap4.css">
 <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/fixedHeader.bootstrap4.css"> -->
-
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/buttons.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/select.bootstrap4.css')}}">
@@ -26,13 +25,13 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h3 class="mb-2">Holidays 2024</h3>
+                                    <h3 class="mb-2">Departments</h3>
                                     <p class="pageheader-text"></p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="{{route('all-employees')}}" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Holidays</li>
+                                                <li class="breadcrumb-item active" aria-current="page">Designations</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -46,7 +45,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <a href="{{route('add-holiday')}}" class="btn btn-info">+ Add Holiday</a>
+                                        <a href="{{route('add_department')}}" class="btn btn-info">+ Add Designation</a>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -54,34 +53,27 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Title</th>
-                                                        <th>Holiday Date</th>
-                                                        <th>Day</th>
+                                                        <th>Designation</th>
+                                                        <th>Department</th>
+                                                        <th>Salary</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>New Year</td>
-                                                        <td>1 Jan 2024</td>
-                                                        <td>Friday</td>
-                                                        <td>:</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Ramadan</td>
-                                                        <td>11 Mar 2024</td>
-                                                        <td>Wednesday</td>
-                                                        <td>:</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Labour Day</td>
-                                                        <td>1 May 2024</td>
-                                                        <td>Sunday</td>
-                                                        <td>:</td>
-                                                    </tr>
+                                                    @foreach ($designations as $designation)
+                                                        <tr>
+                                                            <td>{{ $designation->id }}</td>
+                                                            <td>{{ $designation->designation }}</td>
+                                                            <td>{{ $designation->department->name }}</td>
+                                                            <td>{{ $designation->salary }}</td>
+                                                            <td>
+                                                                <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye"></a>
+                                                                <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" ></a>
+                                                                <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -114,6 +106,7 @@
             <!-- ============================================================== -->
         </div>
     @section('script')
+        
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- <script src="../resources/assets/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script> -->
         <script src="{{asset('assets/vendor/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -131,8 +124,6 @@
         <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
         <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
         <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-        
-href="{{asset('assets/vendor/datepicker/tempusdominus-bootstrap-4.css')}}">
     @endsection
 
 </body>

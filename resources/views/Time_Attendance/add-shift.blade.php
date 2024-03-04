@@ -1,12 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('style')
-<!-- <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/buttons.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/select.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/fixedHeader.bootstrap4.css"> -->
-<!-- <link rel="stylesheet" href="../resources/assets/assets/vendor/datepicker/tempusdominus-bootstrap-4.css"> -->
-
 <link rel="stylesheet" href="{{asset('assets/vendor/datepicker/tempusdominus-bootstrap-4.css')}}">
 @endsection
 
@@ -24,14 +18,14 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h3 class="mb-2">Add Employee</h3>
+                                    <h3 class="mb-2">Add Shift</h3>
                                     <p class="pageheader-text"></p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="{{route('all-employees')}}" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item"><a href="{{route('all-employees')}}" class="breadcrumb-link">Employees</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
+                                                <li class="breadcrumb-item"><a href="{{route('show_shifts')}}" class="breadcrumb-link">Shifts</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Add Shift</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -50,60 +44,48 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" style="margin: auto">
                             <div class="card">
-                                <h5 class="card-header">Add Employee</h5>
+                                <h5 class="card-header">Add Shift</h5>
                                 <div class="card-body">
                                     <form action="#" id="basicform" data-parsley-validate="">
                                         <div class="form-group">
-                                            <label  for="employee_ID">Employee ID</label>
-                                            <input  type="text" required="" placeholder="Employee ID" class="form-control">
+                                            <label  for="title">Title</label>
+                                            <input data-parsley-type="number" type="text" required="" placeholder="Title" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label  for="password">Password</label>
-                                            <input  type="password" required="" placeholder="Password" class="form-control" value="Welcome@123">
+                                            <label  for="code">Short Code</label>
+                                            <input data-parsley-type="number" type="text" required="" placeholder="Short Code" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label  for="employee_FName">First Name</label>
-                                            <input  type="text" required="" placeholder="First Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label  for="employee_LName">Last Name</label>
-                                            <input  type="text" required="" placeholder="Last Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label  for="employee_Email">Email</label>
-                                            <input  type="text" required="" placeholder="Email" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label  for="phone">Phone</label>
-                                            <input data-parsley-type="number" type="text" required="" placeholder="Phone" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="joining_Date">Joining Date</label>
-                                            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                            <label for="startTime">Start Time</label>
+                                            <!-- <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                                                 <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
                                                 <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                                 </div>
+                                            </div> -->
+                                            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3">
+                                                <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="input-select">Department</label>
-                                            <select class="form-control" id="input-department">
-                                                <option>Finance</option>
-                                                <option>HR</option>
-                                                <option>IT</option>
-                                            </select>
+                                            <label for="startTime">End Time</label>
+                                            <!-- <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
+                                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                                </div>
+                                            </div> -->
+                                            <div class="input-group date" id="datetimepicker14" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker14">
+                                                <div class="input-group-append" data-target="#datetimepicker14" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="input-select">Designation</label>
-                                            <select class="form-control" id="input-designation">
-                                                <option>Director of Finance</option>
-                                                <option>HR Assistant</option>
-                                                <option>IT Executive</option>
-                                            </select>
-                                        </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                                                 
@@ -111,7 +93,7 @@
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-success">Submit</button>
-                                                    <a href="{{route('all-employees')}}" class="btn btn-space btn-secondary">Cancel</a>
+                                                    <a href="{{route('show_shifts')}}" class="btn btn-space btn-secondary">Cancel</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -153,8 +135,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
          -->
-        
-        
+
         <script src="{{asset('assets/vendor/datepicker/moment.js')}}"></script>
         <script src="{{asset('assets/vendor/datepicker/tempusdominus-bootstrap-4.js')}}"></script>
         <script src="{{asset('assets/vendor/datepicker/datepicker.js')}}"></script>

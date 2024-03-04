@@ -28,7 +28,7 @@
                                             </ol>
                                         </nav>
                                     </div>
-                                </div><a href="{{route('create-employee')}}" class="text-right mb-3 btn btn-info">Edit Employee</a>
+                                </div><a href="{{route('add-employees')}}" class="text-right mb-3 btn btn-info">Edit Employee</a>
                             </div>
                         </div>
 

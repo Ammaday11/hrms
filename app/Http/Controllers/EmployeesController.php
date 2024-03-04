@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use App\Models\Order;
-// use App\Models\Status;
+use App\Models\{
+    Employee,
+    Department,
+    Designation,
+};
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Session;
 
 class EmployeesController extends Controller
 {
@@ -21,7 +27,12 @@ class EmployeesController extends Controller
         // }
         // $user = Auth::user();
         
-        return view('Employees.all-employees');
+        $employees = Employee::with('department','designation')->get();
+
+        return view('Employees.all-employees', compact('employees'));
+        
+        //return view('Employees.all-employees');
+        // return view('Employees.employees');
     }
 
     /**
@@ -64,9 +75,11 @@ class EmployeesController extends Controller
     {
         return view('Employees.leaves-admin');
     }
-    public function show_departments()
+    
+    public function show_designations()
     {
-        return view('Employees.departments');
+        $designations = Designation::with('department')->get();
+        return view('Employees.designations', compact('designations'));
     }
     public function test()
     {

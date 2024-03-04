@@ -1,11 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('style')
-<!-- <link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/buttons.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/select.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/fixedHeader.bootstrap4.css"> -->
-
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/buttons.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/datatables/css/select.bootstrap4.css')}}">
@@ -26,13 +21,13 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h3 class="mb-2">Holidays 2024</h3>
+                                    <h3 class="mb-2 ">Shifts</h3>
                                     <p class="pageheader-text"></p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="{{route('all-employees')}}" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Holidays</li>
+                                                <li class="breadcrumb-item active" aria-current="page">Shifts</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -45,41 +40,47 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <a href="{{route('add-holiday')}}" class="btn btn-info">+ Add Holiday</a>
+                                    <div class="card-header d-flex">
+                                        <a href="{{route('create_shift')}}" class="btn btn-info">+ Add Shift</a>
+                                        <select class="custom-select ml-auto w-auto">
+                                            <option selected="">Select</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
                                                         <th>Title</th>
-                                                        <th>Holiday Date</th>
-                                                        <th>Day</th>
+                                                        <th>Short Code</th>
+                                                        <th>Start Time</th>
+                                                        <th>End Time</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>New Year</td>
-                                                        <td>1 Jan 2024</td>
-                                                        <td>Friday</td>
+                                                        <td>General Shift</td>
+                                                        <td>G</td>
+                                                        <td>08:00</td>
+                                                        <td>14:00</td>
                                                         <td>:</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>2</td>
-                                                        <td>Ramadan</td>
-                                                        <td>11 Mar 2024</td>
-                                                        <td>Wednesday</td>
+                                                        <td>Ramadan Shift</td>
+                                                        <td>R</td>
+                                                        <td>09:00</td>
+                                                        <td>13:00</td>
                                                         <td>:</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>3</td>
-                                                        <td>Labour Day</td>
-                                                        <td>1 May 2024</td>
-                                                        <td>Sunday</td>
+                                                        <td>Evening Shift</td>
+                                                        <td>E</td>
+                                                        <td>14:00</td>
+                                                        <td>18:00</td>
                                                         <td>:</td>
                                                     </tr>
                                                 </tbody>

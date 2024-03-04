@@ -106,11 +106,18 @@ jQuery(document).ready(function($) {
         });
     }
 
-if ($("#datetimepicker13").length) {
-     $('#datetimepicker13').datetimepicker({
-            inline: true,
-            sideBySide: true
-        });
+    if ($("#datetimepicker13").length) {
+        $('#datetimepicker13').datetimepicker({
+                inline: true,
+                sideBySide: true
+            });
 
-}
+    }
+    
+    if ($("#datetimepicker14").length) {
+
+        $('#datetimepicker14').datetimepicker({
+            format: 'LT'
+        });
+    }
 });

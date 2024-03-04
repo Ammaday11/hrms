@@ -1,10 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('style')
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/buttons.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/select.bootstrap4.css">
-<link rel="stylesheet" href="../resources/assets/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
 @endsection
 
 @section('content')
@@ -39,169 +35,26 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 1</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                                <h6 class="mb-0">ST00002</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://colorlib.com//polygon/concept/assets/images/avatar-1.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 2</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
+                            @foreach ($employees as $employee)
+                                <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"> -->
+                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <a href="{{route('employees-profile')}}" class="">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-inline-block">
+                                                    <h4 class="text-muted">{{$employee->fname}} {{$employee->lname}}</h4>
+                                                    <h5 class="mb-0">{{$employee->designation->designation}}</h5>
+                                                    <h6 class="mb-0">{{$employee->department->name}}</h6>
+                                                    <h6 class="mb-0">{{$employee->employeeID}}</h6>
+                                                </div>
+                                                <div class="float-right icon-circle-extra-large  icon-box-xl">
+                                                    <img src="https://i.pravatar.cc/600?u={{$employee->designation->salary}}" alt="" class="user-avatar-xl rounded-circle">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 3</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 4</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 5</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 6</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 7</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 8</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 9</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h4 class="text-muted">Employee 10</h4>
-                                                <h5 class="mb-0">Job Title</h5>
-                                                <h6 class="mb-0">Department</h6>
-                                            </div>
-                                            <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" class="user-avatar-xl rounded-circle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>  
                     <!-- ============================================================== -->
                     <!-- End Content  -->
@@ -223,7 +76,7 @@
             <!-- ============================================================== -->
         </div>
     @section('script')
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="../resources/assets/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
         <script src="../resources/assets/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
@@ -236,7 +89,7 @@
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
         <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
         <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
-        <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script> -->
     @endsection
 
 </body>

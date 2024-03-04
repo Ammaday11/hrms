@@ -69,72 +69,51 @@
                                     <a class="nav-link" href="{{route('holidays')}}">Holidays</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('show_admin_leaves')}}">Leaves (Admin)</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="listgroup.html">Leaves (Employee)</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Leave Settings</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="accordions.html">Attendance (Admin)</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="tabs.html">Attendance (Employee)</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{route('show_departments')}}">Departments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="tabs.html">Designations</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="tabs.html">Timesheet</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="tabs.html">Overtime</a>
+                                    <a class="nav-link" href="{{route('show_designations')}}">Designations</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Time & Attendance</a>
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-c3.html">C3 Charts</a>
+                                    <a class="nav-link" href="{{route('show_roster')}}">Duty Roster</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-chartist.html">Chartist Charts</a>
+                                    <a class="nav-link" href="{{route('show_shifts')}}">Shifts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-charts.html">Chart</a>
+                                    <a class="nav-link" href="chart-charts.html">Attendance (Admin)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-morris.html">Morris</a>
+                                    <a class="nav-link" href="chart-morris.html">Attendance (Employee)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-sparkline.html">Sparkline</a>
+                                    <a class="nav-link" href="chart-sparkline.html">Timesheet</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-gauge.html">Guage</a>
+                                    <a class="nav-link" href="chart-gauge.html">Overtime</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forms</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Leave</a>
                         <div id="submenu-4" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="form-elements.html">Form Elements</a>
+                                    <a class="nav-link" href="form-elements.html">Leave Types</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="form-validation.html">Parsely Validations</a>
+                                    <a class="nav-link" href="{{route('show_admin_leaves')}}">Leave(Admin)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="multiselect.html">Multiselect</a>
+                                    <a class="nav-link" href="multiselect.html">Leave(Employee)</a>
                                 </li>
                             </ul>
                         </div>
