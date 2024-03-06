@@ -78,8 +78,7 @@ class EmployeesController extends Controller
     
     public function show_designations()
     {
-        $designations = Designation::with('department')->get();
-        return view('Employees.designations', compact('designations'));
+        
     }
     public function test()
     {

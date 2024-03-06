@@ -49,14 +49,13 @@ use App\Http\Controllers\{
 //Route::resource('orders', App\Http\Controllers\OrdersController::class);
 
 Route::get('/', [App\Http\Controllers\OrdersController::class, 'index'])->name('home');
-Route::get('/login', [App\Http\Controllers\UsersController::class, 'get_login'])->name('user.get_login');
-Route::post('/login', [App\Http\Controllers\UsersController::class, 'login'])->name('user.login');
 
 Route::get('/user/create', [App\Http\Controllers\UsersController::class, 'create'])->name('user.create');
 Route::post('/user/store', [App\Http\Controllers\UsersController::class, 'store'])->name('user.store');
 
 
 
+//EMPLOYEE ROUTES
 Route::get('/Employees/all-employees', [App\Http\Controllers\EmployeesController::class, 'index'])->name('all-employees');
 Route::get('/Employees/add-employees', [App\Http\Controllers\EmployeesController::class, 'create'])->name('add-employees');
 Route::get('/Employees/employee-profile', [App\Http\Controllers\EmployeesController::class, 'show'])->name('employees-profile');
@@ -64,7 +63,8 @@ Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::cla
 Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
 Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
 
-Route::get('/Employees/departments', [App\Http\Controllers\DepartmentsController::class, 'show'])->name('show_departments');
+//DEPARTMENT ROUTES
+Route::get('/Employees/departments', [App\Http\Controllers\DepartmentsController::class, 'index'])->name('show_departments');
 Route::get('/Employees/Departments/add-department', [App\Http\Controllers\DepartmentsController::class, 'create'])->name('add_department');
 Route::post('/Employees/Departments/store-department', [App\Http\Controllers\DepartmentsController::class, 'store'])->name('store_department');
 Route::get('/Employees/Departments/edit/{id}', [App\Http\Controllers\DepartmentsController::class, 'edit'])->name('edit_department');
@@ -72,7 +72,16 @@ Route::post('/Employees/Departments/update/{id}', [App\Http\Controllers\Departme
 Route::get('/Employees/Departments/delete/{id}', [App\Http\Controllers\DepartmentsController::class, 'delete'])->name('delete_department');
 Route::post('/Employees/Departments/destroy/{id}', [App\Http\Controllers\DepartmentsController::class, 'destroy'])->name('destroy_department');
 
-Route::get('/Employees/designations', [App\Http\Controllers\EmployeesController::class, 'show_designations'])->name('show_designations');
+
+//DESIGNATION ROUTES
+Route::get('/Employees/designations', [App\Http\Controllers\DesignationsController::class, 'index'])->name('show_designations');
+Route::get('/Employees/designations/show/{id}', [App\Http\Controllers\DesignationsController::class, 'show'])->name('show_designation');
+Route::get('/Employees/Designations/add-designation', [App\Http\Controllers\DesignationsController::class, 'create'])->name('add_designation');
+Route::post('/Employees/Designations/store-designation', [App\Http\Controllers\DesignationsController::class, 'store'])->name('store_designation');
+Route::get('/Employees/Designations/edit/{id}', [App\Http\Controllers\DesignationsController::class, 'edit'])->name('edit_designation');
+Route::post('/Employees/Designations/update/{id}', [App\Http\Controllers\DesignationsController::class, 'update'])->name('update_designation');
+Route::get('/Employees/Designations/delete/{id}', [App\Http\Controllers\DesignationsController::class, 'delete'])->name('delete_designation');
+Route::post('/Employees/Designations/destroy/{id}', [App\Http\Controllers\DesignationsController::class, 'destroy'])->name('destroy_designation');
 
 
 Route::get('/Time-Attendance/shifts', [App\Http\Controllers\Time_AttendanceController::class, 'show_shifts'])->name('show_shifts');
@@ -86,4 +95,7 @@ Route::get('/show-order/{id}', [App\Http\Controllers\OrdersController::class, 's
 Route::get('/user/create', [App\Http\Controllers\UsersController::class, 'create'])->name('user.create');
 Route::post('/user/store', [App\Http\Controllers\UsersController::class, 'store'])->name('user.store');
 
+//LOGIN LOGOUT ROUTES
+Route::get('/login', [App\Http\Controllers\UsersController::class, 'get_login'])->name('user.get_login');
+Route::post('/login', [App\Http\Controllers\UsersController::class, 'login'])->name('user.login');
 Route::get('/logout', [App\Http\Controllers\UsersController::class, 'logout'])->name('user.logout');

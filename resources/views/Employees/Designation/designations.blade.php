@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h3 class="mb-2">Departments</h3>
+                                    <h3 class="mb-2">Designations</h3>
                                     <p class="pageheader-text"></p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
@@ -45,7 +45,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <a href="{{route('add_department')}}" class="btn btn-info">+ Add Designation</a>
+                                        <a href="{{route('add_designation')}}" class="btn btn-info">+ Add Designation</a>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -67,14 +67,37 @@
                                                             <td>{{ $designation->department->name }}</td>
                                                             <td>{{ $designation->salary }}</td>
                                                             <td>
-                                                                <a href="#" class="btn btn-info btn-sm m-r-10 fa fa-eye"></a>
-                                                                <a href="#" class="btn btn-brand btn-sm m-r-10 fas fa-edit" ></a>
-                                                                <a href="#" class="btn btn-danger btn-sm m-r-10 fas fa-trash" data-toggle="modal" data-target="#exampleModal"></a>
+                                                                <a href="{{route('show_designation', ['id' => $designation->id])}}" class="btn btn-info btn-sm m-r-10 fa fa-eye"></a>
+                                                                <a href="{{route('edit_designation', ['id' => $designation->id])}}" class="btn btn-brand btn-sm m-r-10 fas fa-edit" ></a>
+                                                                <a href="{{route('delete_designation', ['id' => $designation->id])}}" class="btn btn-danger btn-sm m-r-10 fas fa-trash"></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                     
                                                 </tbody>
+                                                    @if ($errors->any())
+                                                        @foreach ($errors->all() as $error)
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{$error}}
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </a> 
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+                                                    @if (session()->has('error'))
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">{{session('error')}}
+                                                            <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </a> 
+                                                        </div>
+                                                    @endif
+                                                    @if (session()->has('success'))
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">{{session('success')}}
+                                                            <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </a> 
+                                                        </div>
+                                                    @endif
                                             </table>
                                         </div>
                                     </div>

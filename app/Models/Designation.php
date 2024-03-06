@@ -16,7 +16,8 @@ class Designation extends Model
 {
     use HasFactory;
 
-    protected $gurded = ['id'];
+    //protected $gurded = ['id'];
+    protected $fillable = ['department_id', 'designation', 'salary'];
 
     public function department(){
         return $this->belongsTo(Department::class);

@@ -21,7 +21,7 @@ class DepartmentsController extends Controller
         ]);
     }
 
-    public function show()
+    public function index()
     {
         $departments = Department::all();
         return view('Employees.Department.departments', compact('departments'));
