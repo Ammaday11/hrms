@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
+<link rel="stylesheet" href="{{asset('assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css')}}">
 @endsection
 @section('content')
 <body> 
@@ -28,7 +29,8 @@
                                             </ol>
                                         </nav>
                                     </div>
-                                </div><a href="{{route('add-employees')}}" class="text-right mb-3 btn btn-info">Edit Employee</a>
+                                </div>
+                                <!-- <a href="{{route('add-employees')}}" class="text-right mb-3 btn btn-info">Edit Employee</a> -->
                             </div>
                         </div>
 
@@ -45,21 +47,45 @@
                             <!-- card profile -->
                             <!-- ============================================================== -->
                             <div class="card">
+                                <div class="card-header d-flex">
+                                    <div class="dropdown ml-auto">
+                                        <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <a class="dropdown-item" href="{{route('edit_profile_image', ['id' => $employee->id])}}">Upload new photo</a>
+                                            <a class="dropdown-item" href="#">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div class="user-avatar text-center d-block">
-                                        <img src="https://colorlib.com//polygon/concept/assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                                        @if($employee->image)
+                                            <img src="{{$employee->image}}" alt="" class="rounded-circle user-avatar-xxl">
+                                            <!-- <img src="/{{ $employee->image }}" alt="" class="rounded-circle user-avatar-xxl"> -->
+                                        @else
+                                            <img src="https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg" alt="" class="rounded-circle user-avatar-xxl">
+                                        @endif
                                     </div>
                                     <div class="text-center">
-                                        <h2 class="font-24 mb-0">Michael J. Christy</h2>
-                                        <p>Project Manager @Influnce</p>
+                                        <h2 class="font-24 mb-0 text-default">{{$employee->fname}} {{$employee->lname}}</h2>
+                                        <p>{{$employee->designation->designation}}</p>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <h3 class="font-16">Employee Information</h3>
+                                    <div class="">
+                                        <ul class="list-unstyled mb-0">
+                                        <li class="mb-2">{{$employee->employeeID}}</li>
+                                        <li class="mb-0">{{$employee->department->name}}</li>
+                                        <li class="mb-0">Since {{\Carbon\Carbon::parse($employee->joined_date)->format('d-M-Y')}}</li>
+                                    </ul>
                                     </div>
                                 </div>
                                 <div class="card-body border-top">
                                     <h3 class="font-16">Contact Information</h3>
                                     <div class="">
                                         <ul class="list-unstyled mb-0">
-                                        <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>michaelchristy@gmail.com</li>
-                                        <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>(900) 123 4567</li>
+                                        <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{$employee->email}}</li>
+                                        <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{$employee->phone}}</li>
                                     </ul>
                                     </div>
                                 </div>
@@ -131,32 +157,72 @@
                                                 <div class="section-block">
                                                     <h2 class="section-title">Profile Information</h2>
                                                 </div>
+                                                @if ($errors->any())
+                                                    @foreach ($errors->all() as $error)
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">{{$error}}
+                                                            <a href="#" class="alert close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </a> 
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                                @if (session()->has('error'))
+                                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">{{session('error')}}
+                                                        <a href="#" class="alert close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </a> 
+                                                    </div>
+                                                @endif
+                                                @if (session()->has('success'))
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">{{session('success')}}
+                                                        <a href="#" class="alert close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </a> 
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                                 <div class="card">
-                                                    <h5 class="card-header">Personal Information</h5>
+                                                    <div class="card-header d-flex bg-light">
+                                                        <h4 class="mb-0 text-primary">Personal Information</h4>
+                                                        <div class="dropdown ml-auto">
+                                                            <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                <a class="dropdown-item" href="{{route('edit_employee_personal', ['id' => $employee->id])}}">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="card-body p-0">
                                                         <ul class="traffic-sales list-group list-group-flush">
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">National ID / Passport</span><span class="traffic-sales-amount">A0055668</span>
+                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">National ID / Passport</span><span class="traffic-sales-amount">{{$employee->NID}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Contact No<span class="traffic-sales-amount">7777777</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Contact No<span class="traffic-sales-amount">{{$employee->phone}}</span>
                                                                 </span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Email<span class="traffic-sales-amount">example@gmail.com</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Email<span class="traffic-sales-amount">{{$employee->email}}</span>
                                                                 </span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Permanant Address<span class="traffic-sales-amount ">House Name</span>
+                                                            
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Date of Birth
+                                                                @if($employee->dob)
+                                                                <span class="traffic-sales-amount">{{\Carbon\Carbon::parse($employee->dob)->format('d-M-Y')}}</span>
+                                                                @endif
+                                                            </span>
+                                                            </li>
+                                                            
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Permanant Address<span class="traffic-sales-amount ">{{$employee->parmanant_address}}</span>
                                                                 </span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Nationality<span class="traffic-sales-amount ">Maldivian</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Nationality<span class="traffic-sales-amount ">{{$employee->nationality}}</span>
                                                                 </span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Religion<span class="traffic-sales-amount ">Islam</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Religion<span class="traffic-sales-amount ">{{$employee->religion}}</span>
                                                                 </span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Marital Status<span class="traffic-sales-amount">Married</span>
+                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Marital Status<span class="traffic-sales-amount">{{$employee->marital_status}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">No. of children<span class="traffic-sales-amount">2</span>
+                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">No. of children<span class="traffic-sales-amount">{{$employee->no_kids}}</span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -167,22 +233,33 @@
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                                 <div class="card">
-                                                    <h5 class="card-header">Emergency Contact 01</h5>
+                                                    <div class="card-header d-flex bg-light">
+                                                        <h4 class="mb-0 text-primary">Emergency Contact 01</h4>
+                                                        <div class="dropdown ml-auto">
+                                                            <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                <a class="dropdown-item" href="{{route('edit_employee_emergency', ['id' => $employee->id])}}">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="card-body p-0">
                                                         <ul class="traffic-sales list-group list-group-flush">
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Name</span><span class="traffic-sales-amount">John Doe</span>
+                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Name</span><span class="traffic-sales-amount">{{$employee->emg_name1}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Relationship<span class="traffic-sales-amount">Father</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Relationship<span class="traffic-sales-amount">{{$employee->emg_relation1}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Phone<span class="traffic-sales-amount ">98845946</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Phone<span class="traffic-sales-amount ">{{$employee->emg_phone1}}</span>
                                                             </li>
-                                                            <hr><h5 class="card-header">Emergency Contact 02</h5>
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Name</span><span class="traffic-sales-amount">Karen Wills</span>
-                                                            </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Relationship<span class="traffic-sales-amount">Brother</span>
-                                                            </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Phone<span class="traffic-sales-amount ">879539896</span>
-                                                            </li>
+                                                            @if($employee->emg_name2)
+                                                                <h5 class="card-header text-primary border-top bg-light">Emergency Contact 02</h5>
+                                                                <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Name</span><span class="traffic-sales-amount">{{$employee->emg_name2}}</span>
+                                                                </li>
+                                                                <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Relationship<span class="traffic-sales-amount">{{$employee->emg_relation2}}</span>
+                                                                </li>
+                                                                <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Phone<span class="traffic-sales-amount ">{{$employee->emg_phone2}}</span>
+                                                                </li>
+                                                            @endif
                                                             
                                                         </ul>
                                                     </div>
@@ -194,14 +271,23 @@
                                             
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                                 <div class="card">
-                                                    <h5 class="card-header">Bank Details</h5>
+                                                    <div class="card-header d-flex bg-light">
+                                                        <h4 class="mb-0 text-primary">Bank Details</h4>
+                                                        <div class="dropdown ml-auto">
+                                                            <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                <a class="dropdown-item" href="{{route('edit_employee_bank', ['id' => $employee->id])}}">Edit</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="card-body p-0">
                                                         <ul class="traffic-sales list-group list-group-flush">
-                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Bank Name</span><span class="traffic-sales-amount">Bank of Maldives</span>
+                                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Bank Name</span><span class="traffic-sales-amount">{{$employee->bank_name}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Account Name<span class="traffic-sales-amount">Michael J. Christy</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Account Name<span class="traffic-sales-amount">{{$employee->bank_acc_name}}</span>
                                                             </li>
-                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Account Number<span class="traffic-sales-amount ">5236565326562656</span>
+                                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Account Number<span class="traffic-sales-amount ">{{$employee->bank_acc}}</span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -434,6 +520,12 @@
             <!-- ============================================================== -->
         </div>
     @section('script')
+        <script>
+        // Automatically close alerts after 3 seconds
+        $(document).ready(function(){
+            $(".alert").delay(3000).fadeOut("slow");
+        });
+        </script>
     @endsection
 </body>
 @endsection

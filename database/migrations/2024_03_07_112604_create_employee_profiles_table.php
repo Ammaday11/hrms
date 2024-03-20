@@ -11,19 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('employee_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('employeeID')->unique();
-            $table->string('password');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('email')->unique()->nullable();
-            $table->string('phone');
-            $table->foreignID('department_id');
-            $table->foreignID('designation_id')->nullable();
-            $table->date('joined_date');
             $table->string('NID')->unique()->nullable();
-            $table->date('dob')->nullable();
             $table->string('parmanant_address')->nullable();
             $table->string('nationality')->nullable();
             $table->string('religion')->nullable();
@@ -34,11 +24,10 @@ return new class extends Migration
             $table->string('emg_phone1')->nullable();
             $table->string('emg_name2')->nullable();
             $table->string('emg_relation2')->nullable();
-            $table->string('emg_phone2')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('bank_acc')->nullable();
-            $table->string('bank_acc_name')->nullable();
-            $table->string('image')->nullable();
+            $table->string('emg_phone2');
+            $table->string('bank_name');
+            $table->string('bank_acc');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -48,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('employee_profiles');
     }
 };

@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('style')
+<link rel="stylesheet" href="{{asset('assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css')}}">
 @endsection
 
 @section('content')
@@ -38,17 +39,31 @@
                             @foreach ($employees as $employee)
                                 <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"> -->
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <a href="{{route('employees-profile')}}" class="">
+                                    <a href="{{route('employees-profile', ['id' => $employee->id])}}" class="">
                                         <div class="card">
+                                            <div class="card-header d-flex">
+                                                <h4 class="mb-0">{{$employee->fname}} {{$employee->lname}}</h4>
+                                                <div class="dropdown ml-auto">
+                                                    <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
+                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <a class="dropdown-item" href="{{route('employees-profile', ['id' => $employee->id])}}">Profile</a>
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="card-body">
                                                 <div class="d-inline-block">
-                                                    <h4 class="text-muted">{{$employee->fname}} {{$employee->lname}}</h4>
                                                     <h5 class="mb-0">{{$employee->designation->designation}}</h5>
-                                                    <h6 class="mb-0">{{$employee->department->name}}</h6>
+                                                    <h6 class="mb-0">{{$employee->department->name}}</h6><br>
                                                     <h6 class="mb-0">{{$employee->employeeID}}</h6>
                                                 </div>
                                                 <div class="float-right icon-circle-extra-large  icon-box-xl">
-                                                    <img src="https://i.pravatar.cc/600?u={{$employee->designation->salary}}" alt="" class="user-avatar-xl rounded-circle">
+                                                    @if($employee->image)
+                                                        <img src="{{$employee->image}}" alt="" class="user-avatar-xl rounded-circle">
+                                                    @else
+                                                        <img src="https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg" alt="" class="user-avatar-xl rounded-circle">
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -95,26 +110,3 @@
 </body>
 @endsection
 
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}

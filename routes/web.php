@@ -58,10 +58,19 @@ Route::post('/user/store', [App\Http\Controllers\UsersController::class, 'store'
 //EMPLOYEE ROUTES
 Route::get('/Employees/all-employees', [App\Http\Controllers\EmployeesController::class, 'index'])->name('all-employees');
 Route::get('/Employees/add-employees', [App\Http\Controllers\EmployeesController::class, 'create'])->name('add-employees');
-Route::get('/Employees/employee-profile', [App\Http\Controllers\EmployeesController::class, 'show'])->name('employees-profile');
+Route::post('/Employees/store-employee', [App\Http\Controllers\EmployeesController::class, 'store'])->name('store_employee');
+Route::get('/Employees/employee-profile/{id}', [App\Http\Controllers\EmployeesController::class, 'show'])->name('employees-profile');
 Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::class, 'show_holidays'])->name('holidays');
 Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
 Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
+Route::get('/Employees/edit/personal-info/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_personal'])->name('edit_employee_personal');
+Route::post('/Employees/update/personal-info/{id}', [App\Http\Controllers\EmployeesController::class, 'update_personal'])->name('update_employee_personal');
+Route::get('/Employees/edit/emergency-contact/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_emergency'])->name('edit_employee_emergency');
+Route::post('/Employees/update/emergency-contact/{id}', [App\Http\Controllers\EmployeesController::class, 'update_emergency'])->name('update_employee_emergency');
+Route::get('/Employees/edit/bank-info/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_bank'])->name('edit_employee_bank');
+Route::post('/Employees/update/bank-info/{id}', [App\Http\Controllers\EmployeesController::class, 'update_bank'])->name('update_employee_bank');
+Route::get('/Employees/edit/profile-image/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_pp'])->name('edit_profile_image');
+Route::post('/Employees/update/profile-image/{id}', [App\Http\Controllers\EmployeesController::class, 'update_pp'])->name('update_profile_image');
 
 //DEPARTMENT ROUTES
 Route::get('/Employees/departments', [App\Http\Controllers\DepartmentsController::class, 'index'])->name('show_departments');
@@ -83,6 +92,9 @@ Route::post('/Employees/Designations/update/{id}', [App\Http\Controllers\Designa
 Route::get('/Employees/Designations/delete/{id}', [App\Http\Controllers\DesignationsController::class, 'delete'])->name('delete_designation');
 Route::post('/Employees/Designations/destroy/{id}', [App\Http\Controllers\DesignationsController::class, 'destroy'])->name('destroy_designation');
 
+
+// /getDesignations/
+Route::get('/getDesignations/{departmentId}', [App\Http\Controllers\EmployeesController::class, 'getDesignations'])->name('getDesignations');
 
 Route::get('/Time-Attendance/shifts', [App\Http\Controllers\Time_AttendanceController::class, 'show_shifts'])->name('show_shifts');
 Route::get('/Time-Attendance/add-shifts', [App\Http\Controllers\Time_AttendanceController::class, 'create_shift'])->name('create_shift');

@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>HRMS</title>
+        <link rel="icon" type="image/x-icon" href="https://www.floratechnology.net/wp-content/uploads/2017/03/hrms_icon-250x250.png">
         <!-- Bootstrap CSS -->
         <!-- <link rel="stylesheet" href= "../resources/assets/assets/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href= "../resources/assets/assets/vendor/fonts/circular-std/style.css">

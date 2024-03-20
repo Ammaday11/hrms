@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <a href="{{route('employees-profile')}}" class="">
+                                <a href="#" class="">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="d-inline-block">
