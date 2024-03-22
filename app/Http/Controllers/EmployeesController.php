@@ -123,20 +123,53 @@ class EmployeesController extends Controller
     }
     
 
-    public function test()
-    {
-        return view('admin.show-order');
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $status = Status::all();
-        $order = Order::find($id);
-        return view('admin.edit-order', compact('order', 'status'));
+        $departments = Department::All();
+        $designations = Designation::All();
+        $employee = Employee::with('department')->find($id);
+        return view('Employees.edit-employee', compact('employee', 'departments', 'designations'));
     }
+    
+    public function update(Request $data, string $id)
+    {
+        $employee = Employee::find($id);
+        $department = Department::find($data->department_id);
+        if(!$department){
+            return redirect()->route('edit_employee', ['id' => $employee->id])->with('error', 'Failed to edit Employee! Please try again');
+        }
+        $designation = Designation::find($data->designation_id);
+        if(!$designation){
+            return redirect()->route('edit_employee', ['id' => $employee->id])->with('error', 'Failed to edit Employee! Please try again');
+        }
+        if(!$data->joined_date){
+            $joined_date = $employee->joined_date;
+        }else{
+            $joined_date = $data->joined_date;
+        }
+        $joined_date=date("Y-m-d ", strtotime($joined_date));
+        if ($employee){
+            $this->edit_validator($data->all())->validate();
+            $employee->fname = $data['fname'];
+            $employee->lname = $data['lname'];
+            $employee->email = $data['email'];
+            $employee->phone = $data['phone'];
+            $employee->joined_date = $joined_date;
+            $employee->department_id = $department->id;
+            $employee->designation_id = $designation->id;
+            $employee->update();
+            return redirect()->route('employees-profile', ['id' => $employee->id])->with('success', 'Employee information updated successfully!');
+            
+        }
+        
+        $employees = Employee::with('department','designation')->get();
+        return view('Employees.all-employees', compact('employees'));
+    }
+
     public function edit_personal(string $id)
     {
         $employee = Employee::find($id);
@@ -248,17 +281,25 @@ class EmployeesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(string $id)
+    {
+        $employee = Employee::find($id);
+        return view('Employees.delete-employee', compact('employee'));
+    }
+
     public function destroy(string $id)
     {
-        //
+        $employee = Employee::find($id);
+        if($employee){
+            $employee->destroy($employee->id);
+            return redirect()->route('all-employees')->with('success', 'Employee deleted successfully!');
+        }
+        
+        return redirect()->route('delete_employee')->with('error', 'Failed to delete Employee! Please try again');
     }
 
 
@@ -283,6 +324,20 @@ class EmployeesController extends Controller
             'designation_id' => ['required'],
         ]);
     }
+
+    protected function edit_validator(array $data)
+    {
+        return Validator::make($data, [
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'joined_date' => ['required', 'date'],
+             'department_id' => ['required'],
+             'designation_id' => ['required'],
+        ]);
+    }
+
     protected function personal_validator(array $data)
     {
         return Validator::make($data, [

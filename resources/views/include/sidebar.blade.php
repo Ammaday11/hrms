@@ -66,13 +66,13 @@
                                     <a class="nav-link" href="{{route('all-employees')}}">All Employees<span class="badge badge-secondary">New</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('holidays')}}">Holidays</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{route('show_departments')}}">Departments</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('show_designations')}}">Designations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('holidays')}}">Holidays</a>
                                 </li>
                             </ul>
                         </div>

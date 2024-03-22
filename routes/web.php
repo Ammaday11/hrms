@@ -60,9 +60,8 @@ Route::get('/Employees/all-employees', [App\Http\Controllers\EmployeesController
 Route::get('/Employees/add-employees', [App\Http\Controllers\EmployeesController::class, 'create'])->name('add-employees');
 Route::post('/Employees/store-employee', [App\Http\Controllers\EmployeesController::class, 'store'])->name('store_employee');
 Route::get('/Employees/employee-profile/{id}', [App\Http\Controllers\EmployeesController::class, 'show'])->name('employees-profile');
-Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::class, 'show_holidays'])->name('holidays');
-Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
-Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
+Route::get('/Employees/edit/{id}', [App\Http\Controllers\EmployeesController::class, 'edit'])->name('edit_employee');
+Route::post('/Employees/update/{id}', [App\Http\Controllers\EmployeesController::class, 'update'])->name('update_employee');
 Route::get('/Employees/edit/personal-info/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_personal'])->name('edit_employee_personal');
 Route::post('/Employees/update/personal-info/{id}', [App\Http\Controllers\EmployeesController::class, 'update_personal'])->name('update_employee_personal');
 Route::get('/Employees/edit/emergency-contact/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_emergency'])->name('edit_employee_emergency');
@@ -71,6 +70,12 @@ Route::get('/Employees/edit/bank-info/{id}', [App\Http\Controllers\EmployeesCont
 Route::post('/Employees/update/bank-info/{id}', [App\Http\Controllers\EmployeesController::class, 'update_bank'])->name('update_employee_bank');
 Route::get('/Employees/edit/profile-image/{id}', [App\Http\Controllers\EmployeesController::class, 'edit_pp'])->name('edit_profile_image');
 Route::post('/Employees/update/profile-image/{id}', [App\Http\Controllers\EmployeesController::class, 'update_pp'])->name('update_profile_image');
+Route::get('/Employees/delete/{id}', [App\Http\Controllers\EmployeesController::class, 'delete'])->name('delete_employee');
+Route::post('/Employees/destroy/{id}', [App\Http\Controllers\EmployeesController::class, 'destroy'])->name('destroy_employee');
+
+Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::class, 'show_holidays'])->name('holidays');
+Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
+Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
 
 //DEPARTMENT ROUTES
 Route::get('/Employees/departments', [App\Http\Controllers\DepartmentsController::class, 'index'])->name('show_departments');

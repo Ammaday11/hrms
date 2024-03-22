@@ -52,7 +52,8 @@
                                         <a class="toolbar" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-dots-vertical"></i> </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(18px, 23px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" href="{{route('edit_profile_image', ['id' => $employee->id])}}">Upload new photo</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
+                                            <a class="dropdown-item" href="{{route('edit_employee', ['id' => $employee->id])}}">Edit</a>
+                                            <a class="dropdown-item" href="{{route('delete_employee', ['id' => $employee->id])}}">Delete</a>
                                         </div>
                                     </div>
                                 </div>
