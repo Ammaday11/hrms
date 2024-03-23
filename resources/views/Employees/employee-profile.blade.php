@@ -90,7 +90,7 @@
                                     </ul>
                                     </div>
                                 </div>
-                                <div class="card-body border-top">
+                                <!-- <div class="card-body border-top">
                                     <h3 class="font-16">Rating</h3>
                                     <h1 class="mb-0">4.8</h1>
                                     <div class="rating-star">
@@ -120,7 +120,7 @@
                                     <div>
                                         <a href="#" class="badge badge-light mr-1">Fitness</a><a href="#" class="badge badge-light mr-1">Life Style</a><a href="#" class="badge badge-light mr-1">Gym</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- ============================================================== -->
                             <!-- end card profile -->

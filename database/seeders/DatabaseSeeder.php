@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Employee;
-use App\Models\Employee_Profile;
+use App\Models\Holiday;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -45,5 +45,6 @@ class DatabaseSeeder extends Seeder
 
         // $designation = Designation::factory(10)->create();
         $employee = Employee::factory(20)->create();
+        $holiday = Holiday::factory(5)->create();
     }
 }

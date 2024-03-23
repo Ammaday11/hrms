@@ -17,7 +17,7 @@ class DesignationFactory extends Factory
     public function definition(): array
     {
         return [
-            'department_id' => $this->faker->numberBetween(1, 3),
+            'department_id' => $this->faker->numberBetween(1, 4),
             'designation' => $this->faker->jobTitle(),
             'salary' => $this->faker->randomNumber(4, true),
 

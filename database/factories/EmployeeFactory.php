@@ -26,7 +26,7 @@ class EmployeeFactory extends Factory
             'lname' => $this->faker->lastName(),
             'email' =>$this->faker->unique()->safeEmail(),
             'phone' =>$this->faker->unique()->e164PhoneNumber(),
-            'department_id' => $this->faker->numberBetween(1, 3),
+            'department_id' => $this->faker->numberBetween(1, 4),
             'designation_id' => Designation::factory(),
             'joined_date' => $this->faker->dateTime(),
             'NID' => $this->faker->unique()->numerify('A######'),

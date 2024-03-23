@@ -49,18 +49,6 @@ class EmployeesController extends Controller
         return view('Employees.add-employee', compact('departments','designations'));
     }
 
-    //getDesignations based on selected department
-    public function getDesignations($departmentId)
-    {
-        try {
-            
-            $designations = Designation::where('department_id', $departmentId)->get();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // Handle the case where the department is not found
-            $designations = [];
-        }
-        return response()->json($designations);
-    }
 
 
     /**
@@ -108,15 +96,6 @@ class EmployeesController extends Controller
         return view('Employees.employee-profile', compact('employee'));
     }
 
-    public function show_holidays()
-    {
-        return view('Employees.holidays');
-    }
-    
-    public function create_holidays()
-    {
-        return view('Employees.add-holiday');
-    }
     public function show_admin_leaves()
     {
         return view('Employees.leaves-admin');
@@ -149,9 +128,9 @@ class EmployeesController extends Controller
         if(!$data->joined_date){
             $joined_date = $employee->joined_date;
         }else{
-            $joined_date = $data->joined_date;
+            $joined_date = date("Y-m-d ", strtotime($data['joined_date']));
         }
-        $joined_date=date("Y-m-d ", strtotime($joined_date));
+        //$joined_date=date("Y-m-d ", strtotime($joined_date));
         if ($employee){
             $this->edit_validator($data->all())->validate();
             $employee->fname = $data['fname'];
@@ -178,7 +157,7 @@ class EmployeesController extends Controller
     public function update_personal(Request $data, string $id)
     {
         $employee = Employee::find($id);
-        $dob=date("Y-m-d ", strtotime($data->dob));
+        //$dob=date("Y-m-d ", strtotime($data->dob));
         if ($employee){
             $this->personal_validator($data->all())->validate();
             if($employee->NID){
@@ -192,7 +171,7 @@ class EmployeesController extends Controller
                 $employee->email = $data['email'];
             }
             $employee->phone = $data['phone'];
-            $employee->dob = $dob;
+            $employee->dob = date('Y-m-d', strtotime($data['dob']));
             $employee->parmanant_address = $data['parmanant_address'];
             $employee->nationality = $data['nationality'];
             $employee->religion = $data['religion'];
@@ -278,13 +257,7 @@ class EmployeesController extends Controller
         }
         return view('Employees.edit-employee-personal', compact('employee'));
     }
-    /**
-     * Update the specified resource in storage.
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function delete(string $id)
     {
         $employee = Employee::find($id);
@@ -308,7 +281,18 @@ class EmployeesController extends Controller
 
 
 
-
+    //getDesignations based on selected department
+    public function getDesignations($departmentId)
+    {
+        try {
+            
+            $designations = Designation::where('department_id', $departmentId)->get();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Handle the case where the department is not found
+            $designations = [];
+        }
+        return response()->json($designations);
+    }
 
 
     protected function validator(array $data)

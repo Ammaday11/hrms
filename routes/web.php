@@ -73,8 +73,15 @@ Route::post('/Employees/update/profile-image/{id}', [App\Http\Controllers\Employ
 Route::get('/Employees/delete/{id}', [App\Http\Controllers\EmployeesController::class, 'delete'])->name('delete_employee');
 Route::post('/Employees/destroy/{id}', [App\Http\Controllers\EmployeesController::class, 'destroy'])->name('destroy_employee');
 
-Route::get('/Employees/holidays', [App\Http\Controllers\EmployeesController::class, 'show_holidays'])->name('holidays');
-Route::get('/Employees/Holidays/add-holiday', [App\Http\Controllers\EmployeesController::class, 'create_holidays'])->name('add-holiday');
+//HOLIDAY ROUTES
+Route::get('/Employees/holidays', [App\Http\Controllers\HolidaysController::class, 'index'])->name('holidays');
+Route::get('/Employees/Holidays/create-holiday', [App\Http\Controllers\HolidaysController::class, 'create'])->name('create-holiday');
+Route::post('/Employees/Holidays/store-holiday', [App\Http\Controllers\HolidaysController::class, 'store'])->name('store_holiday');
+Route::get('/Employees/Holidays/edit/{id}', [App\Http\Controllers\HolidaysController::class, 'edit'])->name('edit_holiday');
+Route::post('/Employees/Holidays/update/{id}', [App\Http\Controllers\HolidaysController::class, 'update'])->name('update_holiday');
+Route::get('/Employees/Holidays/delete/{id}', [App\Http\Controllers\HolidaysController::class, 'delete'])->name('delete_holiday');
+Route::post('/Employees/Holidays/destroy/{id}', [App\Http\Controllers\HolidaysController::class, 'destroy'])->name('destroy_holiday');
+
 Route::get('/Employees/admin-leaves', [App\Http\Controllers\EmployeesController::class, 'show_admin_leaves'])->name('show_admin_leaves');
 
 //DEPARTMENT ROUTES
