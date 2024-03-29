@@ -18,14 +18,14 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h3 class="mb-2">Add Shift</h3>
+                                    <h3 class="mb-2">Create Shift</h3>
                                     <p class="pageheader-text"></p>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="{{route('all-employees')}}" class="breadcrumb-link">Dashboard</a></li>
-                                                <li class="breadcrumb-item"><a href="{{route('show_shifts')}}" class="breadcrumb-link">Shifts</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Add Shift</li>
+                                                <li class="breadcrumb-item"><a href="{{route('index_shifts')}}" class="breadcrumb-link">Shifts</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Create Shift</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -44,27 +44,46 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" style="margin: auto">
                             <div class="card">
-                                <h5 class="card-header">Add Shift</h5>
+                                <h5 class="card-header">Create New Shift</h5>
                                 <div class="card-body">
-                                    <form action="#" id="basicform" data-parsley-validate="">
+                                    <form action="{{ route('store_shift') }}"  data-parsley-validate="" method='POST' enctype="multipart/form-data">
+                                        @if ($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">{{$error}}
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </a> 
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        @if (session()->has('error'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{session('error')}}
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </a> 
+                                            </div>
+                                        @endif
+                                        @if (session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">{{session('success')}}
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </a> 
+                                            </div>
+                                        @endif
+
+                                        @csrf
                                         <div class="form-group">
-                                            <label  for="title">Title</label>
-                                            <input data-parsley-type="number" type="text" required="" placeholder="Title" class="form-control">
+                                            <label  for="name">Name</label>
+                                            <input data-parsley-type="number" name="name" type="text" required="" placeholder="Name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label  for="code">Short Code</label>
-                                            <input data-parsley-type="number" type="text" required="" placeholder="Short Code" class="form-control">
+                                            <label  for="short_code">Short Code</label>
+                                            <input data-parsley-type="number" name="short_code" type="text" required="" placeholder="Short Code" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="startTime">Start Time</label>
-                                            <!-- <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
-                                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                                                </div>
-                                            </div> -->
                                             <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3">
+                                                <input type="text" name="start_time" class="form-control datetimepicker-input" data-target="#datetimepicker3">
                                                 <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="far fa-clock"></i></div>
                                                 </div>
@@ -72,18 +91,21 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="startTime">End Time</label>
-                                            <!-- <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
-                                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                                                </div>
-                                            </div> -->
                                             <div class="input-group date" id="datetimepicker14" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker14">
+                                                <input type="text" name="end_time" class="form-control datetimepicker-input" data-target="#datetimepicker14">
                                                 <div class="input-group-append" data-target="#datetimepicker14" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="far fa-clock"></i></div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="">Has OT</label>
+                                            <!-- <div class="col-12 col-sm-8 col-lg-6 pt-1"> -->
+                                                <div class="switch-button switch-button-sm switch-button-primary pt-1 ml-4">
+                                                    <input type="checkbox" checked="" name="hasOT" id="switch16"><span>
+                                                    <label for="switch16"></label></span>
+                                                </div>
+                                            <!-- </div> -->
                                         </div>
 
                                         <div class="row">
@@ -93,7 +115,7 @@
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-success">Submit</button>
-                                                    <a href="{{route('show_shifts')}}" class="btn btn-space btn-secondary">Cancel</a>
+                                                    <a href="{{route('index_shifts')}}" class="btn btn-space btn-secondary">Cancel</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -139,9 +161,12 @@
         <script src="{{asset('assets/vendor/datepicker/moment.js')}}"></script>
         <script src="{{asset('assets/vendor/datepicker/tempusdominus-bootstrap-4.js')}}"></script>
         <script src="{{asset('assets/vendor/datepicker/datepicker.js')}}"></script>
-        <!-- <script src="../resources/assets/assets/vendor/datepicker/moment.js"></script>
-        <script src="../resources/assets/assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
-        <script src="../resources/assets/assets/vendor/datepicker/datepicker.js"></script> -->
+        <script>
+        // Ensure the checkbox is unchecked (off) by default
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("switch16").checked = false;
+        });
+    </script>
     @endsection
 
 </body>

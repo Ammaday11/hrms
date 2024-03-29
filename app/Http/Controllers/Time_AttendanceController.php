@@ -40,14 +40,7 @@ class Time_AttendanceController extends Controller
 
     
 
-    public function show_shifts()
-    {
-        return view('Time_Attendance.shifts');
-    }
-    public function create_shift()
-    {
-        return view('Time_Attendance.add-shift');
-    }
+    
     public function show_roster()
     {
         return view('Time_Attendance.roster');

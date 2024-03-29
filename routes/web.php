@@ -104,12 +104,22 @@ Route::post('/Employees/Designations/update/{id}', [App\Http\Controllers\Designa
 Route::get('/Employees/Designations/delete/{id}', [App\Http\Controllers\DesignationsController::class, 'delete'])->name('delete_designation');
 Route::post('/Employees/Designations/destroy/{id}', [App\Http\Controllers\DesignationsController::class, 'destroy'])->name('destroy_designation');
 
-
 // /getDesignations/
 Route::get('/getDesignations/{departmentId}', [App\Http\Controllers\EmployeesController::class, 'getDesignations'])->name('getDesignations');
 
-Route::get('/Time-Attendance/shifts', [App\Http\Controllers\Time_AttendanceController::class, 'show_shifts'])->name('show_shifts');
-Route::get('/Time-Attendance/add-shifts', [App\Http\Controllers\Time_AttendanceController::class, 'create_shift'])->name('create_shift');
+//SHIFTS ROUTES
+Route::get('/Time-Attendance/shifts', [App\Http\Controllers\ShiftsController::class, 'index'])->name('index_shifts');
+Route::get('/Time-Attendance/Shifts/add-shifts', [App\Http\Controllers\ShiftsController::class, 'create'])->name('create_shift');
+Route::post('/Time-Attendance/Shifts/store-shifts', [App\Http\Controllers\ShiftsController::class, 'store'])->name('store_shift');
+Route::get('/Time-Attendance/Shifts/edit/{id}', [App\Http\Controllers\ShiftsController::class, 'edit'])->name('edit_shift');
+Route::post('/Time-Attendance/Shifts/update/{id}', [App\Http\Controllers\ShiftsController::class, 'update'])->name('update_shift');
+Route::get('/Employees/Shifts/delete/{id}', [App\Http\Controllers\ShiftsController::class, 'delete'])->name('delete_shift');
+Route::post('/Employees/Shifts/destroy/{id}', [App\Http\Controllers\ShiftsController::class, 'destroy'])->name('destroy_shift');
+
+
+
+
+
 Route::get('/Time-Attendance/roster', [App\Http\Controllers\Time_AttendanceController::class, 'show_roster'])->name('show_roster');
 
 Route::get('/create-order', [App\Http\Controllers\OrdersController::class, 'create'])->name('create-order');
