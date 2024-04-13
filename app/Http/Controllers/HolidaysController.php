@@ -19,7 +19,6 @@ class HolidaysController extends Controller
     
     public function index()
     {
-        
         $holidays = Holiday::orderByDesc('holiday_date')->get();
         return view('Employees.Holiday.holidays', compact('holidays'));
     }

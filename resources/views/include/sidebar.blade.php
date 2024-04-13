@@ -85,7 +85,7 @@
                                     <a class="nav-link" href="{{route('index_shifts')}}">Shifts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('show_roster')}}">Duty Roster</a>
+                                    <a class="nav-link" href="{{route('index_roster')}}">Duty Roster</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="chart-charts.html">Attendance (Admin)</a>

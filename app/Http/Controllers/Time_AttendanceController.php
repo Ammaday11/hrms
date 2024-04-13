@@ -40,11 +40,6 @@ class Time_AttendanceController extends Controller
 
     
 
-    
-    public function show_roster()
-    {
-        return view('Time_Attendance.roster');
-    }
 
 
     /**
@@ -52,9 +47,7 @@ class Time_AttendanceController extends Controller
      */
     public function edit(string $id)
     {
-        $status = Status::all();
-        $order = Order::find($id);
-        return view('admin.edit-order', compact('order', 'status'));
+        
     }
     /**
      * Update the specified resource in storage.

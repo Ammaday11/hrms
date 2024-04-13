@@ -53,6 +53,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Shift::create([
+            'name' => 'Off Day',
+            'short_code' => 'O',
+            'start_time' => '00:00:00',
+            'end_time' => '00:00:00',
+            'hasOT' => FALSE
+        ]);
+        Shift::create([
             'name' => 'General Shift',
             'short_code' => 'G',
             'start_time' => '08:00:00',

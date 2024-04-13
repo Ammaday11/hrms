@@ -109,18 +109,31 @@ Route::get('/getDesignations/{departmentId}', [App\Http\Controllers\EmployeesCon
 
 //SHIFTS ROUTES
 Route::get('/Time-Attendance/shifts', [App\Http\Controllers\ShiftsController::class, 'index'])->name('index_shifts');
-Route::get('/Time-Attendance/Shifts/add-shifts', [App\Http\Controllers\ShiftsController::class, 'create'])->name('create_shift');
+Route::get('/Time-Attendance/Shifts/create-shifts', [App\Http\Controllers\ShiftsController::class, 'create'])->name('create_shift');
 Route::post('/Time-Attendance/Shifts/store-shifts', [App\Http\Controllers\ShiftsController::class, 'store'])->name('store_shift');
 Route::get('/Time-Attendance/Shifts/edit/{id}', [App\Http\Controllers\ShiftsController::class, 'edit'])->name('edit_shift');
 Route::post('/Time-Attendance/Shifts/update/{id}', [App\Http\Controllers\ShiftsController::class, 'update'])->name('update_shift');
 Route::get('/Employees/Shifts/delete/{id}', [App\Http\Controllers\ShiftsController::class, 'delete'])->name('delete_shift');
 Route::post('/Employees/Shifts/destroy/{id}', [App\Http\Controllers\ShiftsController::class, 'destroy'])->name('destroy_shift');
 
+//DUTY ROSTER ROUTES
+Route::get('/Time-Attendance/roster', [App\Http\Controllers\DutyRosterController::class, 'index'])->name('index_roster');
+Route::get('/Time-Attendance/Roster/create-roster/{year}/{month}', [App\Http\Controllers\DutyRosterController::class, 'create'])->name('create_roster');
+Route::post('/Time-Attendance/Roster/store-roster', [App\Http\Controllers\DutyRosterController::class, 'store'])->name('store_roster');
+Route::get('/Time-Attendance/Roster/edit-roster/{year}/{month}', [App\Http\Controllers\DutyRosterController::class, 'edit'])->name('edit_roster');
+Route::post('/Employees/Roster/update/', [App\Http\Controllers\DutyRosterController::class, 'update'])->name('update_roster');
+Route::post('/Time-Attendance/Roster/show-roster', [App\Http\Controllers\DutyRosterController::class, 'show'])->name('show_roster');
+Route::get('/Time-Attendance/Roster/delete-roster/{year}/{month}', [App\Http\Controllers\DutyRosterController::class, 'delete'])->name('delete_roster');
 
 
 
 
-Route::get('/Time-Attendance/roster', [App\Http\Controllers\Time_AttendanceController::class, 'show_roster'])->name('show_roster');
+
+
+
+
+
+
 
 Route::get('/create-order', [App\Http\Controllers\OrdersController::class, 'create'])->name('create-order');
 Route::get('/edit-order/{id}', [App\Http\Controllers\OrdersController::class, 'edit'])->name('edit-order');

@@ -8,6 +8,8 @@ use App\Models\{
     Department,
     Designation,
     Employee_Profile,
+    Shift,
+    Duty_Roster,
 };
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -26,6 +28,9 @@ class Employee extends Model
     }
     public function designation(){
         return $this->belongsTo(Designation::class);
+    }
+    public function shifts(){
+        return $this->belongsToMany(Shift::class, 'Duty_Roster')->withPivot('date');
     }
     // public function employee_profile(){
     //     return $this->belongsTo(Employee_Profile::class);
